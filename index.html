@@ -15,7 +15,7 @@
   --orange:#f59e0b;--orange-light:#fbbf24;--orange-dark:#d97706;
   --white:#fff;--off-white:#f9fafb;--black:#1a1a1a;--gray:#555;--gray-light:#9ca3af
 }
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6}
 
 /* NAVBAR */
@@ -44,7 +44,7 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);o
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:0 4rem;overflow:hidden;background:var(--navy-dark)}
 .hero::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1600&q=80') center/cover no-repeat;filter:brightness(0.4);z-index:0}
 .hero::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--navy-dark);opacity:.75;z-index:1}
-.hero-content{max-width:1100px;margin:0 auto;width:100%;position:relative;z-index:2;text-align:center;color:var(--white)}
+.hero-content{max-width:1100px;margin:0 auto;width:100%;position:relative;z-index:2;text-align:center;color:var(--white);padding:80px 0 40px}
 .hero-badge{display:inline-block;background:var(--orange);color:var(--white);padding:.6rem 1.5rem;border-radius:4px;font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:2rem}
 .hero-title{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;line-height:1.15;margin-bottom:1.2rem;letter-spacing:-.02em}
 .hero-subtitle{font-size:clamp(1.1rem,2vw,1.4rem);font-weight:400;line-height:1.6;max-width:750px;margin:0 auto 2rem;color:rgba(255,255,255,.9)}
@@ -166,9 +166,16 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);o
   .nav-brand{margin:0 auto}
   .nav-links,.nav-cta{display:none}
   .hamburger{display:flex;position:absolute;right:1.5rem}
-  .hero{padding:0 1.5rem}
+  .hero{padding:0 1.5rem;min-height:100vh;height:100vh}
+  .hero-content{padding:70px 0 40px}
+  .hero-badge{font-size:.7rem;padding:.5rem 1.2rem}
+  .hero-title{font-size:clamp(1.8rem,8vw,2.5rem)}
+  .hero-subtitle{font-size:clamp(.95rem,4vw,1.2rem)}
   .hero-features{flex-direction:column;gap:1rem;align-items:center}
+  .hero-feature{font-size:.85rem}
+  .hero-cta{padding:1rem 2rem;font-size:.85rem}
   .section{padding:3rem 1.5rem}
+  .section-title{font-size:clamp(1.6rem,6vw,2.2rem)}
   .about-text{text-align:center}
   .services-grid{max-width:500px;margin:0 auto}
   .service-card{text-align:center}
@@ -181,6 +188,39 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);o
   .footer-grid{text-align:center}
   .footer-social{justify-content:center}
   .whatsapp-btn{width:55px;height:55px;font-size:1.6rem}
+}
+@media (max-width:480px){
+  .navbar{padding:0 1rem}
+  .hamburger{right:1rem}
+  .hero{padding:0 1rem;min-height:100vh;height:100vh}
+  .hero-content{padding:70px 0 30px}
+  .hero-badge{font-size:.65rem;padding:.4rem 1rem;margin-bottom:1.5rem}
+  .hero-title{font-size:clamp(1.5rem,7vw,2rem);margin-bottom:1rem}
+  .hero-subtitle{font-size:clamp(.9rem,3.5vw,1.1rem);margin-bottom:1.5rem}
+  .hero-features{gap:.8rem}
+  .hero-feature{font-size:.8rem}
+  .hero-feature i{font-size:1rem}
+  .hero-cta{padding:.9rem 1.8rem;font-size:.8rem}
+  .hero-cta i{font-size:1.1rem}
+  .section{padding:2.5rem 1rem}
+  .section-header{margin-bottom:3rem}
+  .section-title{font-size:clamp(1.4rem,5.5vw,1.9rem)}
+  .section-subtitle{font-size:.95rem}
+  .nav-logo{font-size:1.2rem}
+  .form-container{padding:1.5rem 1rem}
+  .footer{padding:2.5rem 1rem 1.5rem}
+  .whatsapp-btn{width:50px;height:50px;font-size:1.4rem;bottom:1.5rem;right:1.5rem}
+}
+@media (max-width:360px){
+  .hero{padding:0 .8rem;min-height:100vh;height:100vh}
+  .hero-content{padding:70px 0 20px}
+  .hero-badge{font-size:.6rem;padding:.35rem .8rem}
+  .hero-title{font-size:1.4rem;line-height:1.2}
+  .hero-subtitle{font-size:.85rem}
+  .hero-cta{padding:.8rem 1.5rem;font-size:.75rem}
+  .section{padding:2rem .8rem}
+  .section-title{font-size:1.3rem}
+  .nav-logo{font-size:1.1rem}
 }
 </style>
 </head>
@@ -197,7 +237,7 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);o
     <li><a href="#info">Información</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
-  <a href="https://wa.me/5493534241527" target="_blank" class="nav-cta">
+  <a href="#formulario" class="nav-cta">
     <i class="fab fa-whatsapp"></i>
     Consulta Gratis
   </a>
@@ -221,7 +261,7 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);o
       <div class="hero-feature"><i class="fas fa-clock"></i> Resuelto en 7 Días</div>
       <div class="hero-feature"><i class="fas fa-shield-alt"></i> 100% Legal</div>
     </div>
-    <a href="https://wa.me/5493534241527" target="_blank" class="hero-cta">
+    <a href="#formulario" class="hero-cta">
       <i class="fab fa-whatsapp"></i>
       Consulta tu caso ahora
     </a>
@@ -393,7 +433,7 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);o
 <section class="cta-section" id="contacto">
   <h2>No dejes pasar más tiempo. Tu historial puede prescribir.</h2>
   <p>Recuperá tu acceso al sistema financiero. Asesoramiento gratuito y trámite resuelto en 7 días.</p>
-  <a href="https://wa.me/5493534241527" target="_blank" class="cta-btn">
+  <a href="#formulario" class="cta-btn">
     <i class="fab fa-whatsapp"></i>
     Consulta tu caso gratis
   </a>
