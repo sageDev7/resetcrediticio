@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reset Crediticio – Salí del Veraz, Nosis y BCRA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#1e3a5f;--navy-light:#2c5282;--navy-dark:#152a45;
+  --orange:#f59e0b;--orange-light:#fbbf24;--orange-dark:#d97706;
+  --white:#fff;--off-white:#f9fafb;--black:#1a1a1a;--gray:#555;--gray-light:#9ca3af
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6}
+
+/* NAVBAR */
+.navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;height:80px;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;transition:background .3s,box-shadow .3s,height .3s;background:transparent}
+.navbar.scrolled{background:var(--navy);box-shadow:0 2px 15px rgba(30,58,95,.3);height:70px}
+.nav-brand{display:flex;align-items:center;gap:1rem}
+.nav-logo{font-size:1.5rem;font-weight:900;color:var(--white);letter-spacing:.02em;text-decoration:none;text-transform:uppercase}
+.nav-logo span{color:var(--orange)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--white);text-decoration:none;font-size:.85rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;transition:color .3s;position:relative}
+.nav-links a:hover{color:var(--orange)}
+.nav-cta{background:var(--orange);color:var(--white);padding:.7rem 1.8rem;border-radius:4px;text-decoration:none;font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;transition:all .3s;display:flex;align-items:center;gap:.5rem}
+.nav-cta:hover{background:var(--orange-light);transform:translateY(-2px)}
+.nav-cta i{font-size:1rem}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hamburger span{width:24px;height:2px;background:var(--white);transition:.3s}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mobile-nav{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(30,58,95,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2rem;opacity:0;pointer-events:none;transition:opacity .4s ease}
+.mobile-nav.open{display:flex;opacity:1;pointer-events:auto}
+.mobile-nav a{color:var(--white);text-decoration:none;font-size:.95rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:color .3s}
+.mobile-nav a:hover{color:var(--orange)}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:0 4rem;overflow:hidden;background:var(--navy-dark)}
+.hero::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1600&q=80') center/cover no-repeat;filter:brightness(0.4);z-index:0}
+.hero::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--navy-dark);opacity:.75;z-index:1}
+.hero-content{max-width:1100px;margin:0 auto;width:100%;position:relative;z-index:2;text-align:center;color:var(--white)}
+.hero-badge{display:inline-block;background:var(--orange);color:var(--white);padding:.6rem 1.5rem;border-radius:4px;font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:2rem}
+.hero-title{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;line-height:1.15;margin-bottom:1.2rem;letter-spacing:-.02em}
+.hero-subtitle{font-size:clamp(1.1rem,2vw,1.4rem);font-weight:400;line-height:1.6;max-width:750px;margin:0 auto 2rem;color:rgba(255,255,255,.9)}
+.hero-features{display:flex;justify-content:center;gap:3rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.hero-feature{display:flex;align-items:center;gap:.7rem;font-size:.95rem;font-weight:600}
+.hero-feature i{color:var(--orange);font-size:1.1rem}
+.hero-cta{display:inline-flex;align-items:center;gap:.8rem;padding:1.2rem 3rem;background:var(--orange);color:var(--white);text-decoration:none;font-size:.95rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;transition:all .3s;border-radius:4px}
+.hero-cta:hover{background:var(--orange-light);transform:translateY(-3px);box-shadow:0 10px 30px rgba(245,158,11,.3)}
+.hero-cta i{font-size:1.2rem}
+
+/* SECTION UTILS */
+.section{padding:6rem 4rem}
+.section-header{text-align:center;margin-bottom:4rem}
+.section-title{font-size:clamp(2rem,3.8vw,2.8rem);font-weight:800;color:var(--navy-dark);line-height:1.2;margin-bottom:1rem}
+.section-subtitle{font-size:1.1rem;color:var(--gray);max-width:700px;margin:0 auto}
+
+/* ABOUT */
+.about{background:var(--off-white)}
+.about-content{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-image img{width:100%;border-radius:8px;box-shadow:0 15px 50px rgba(30,58,95,.15)}
+.about-text h3{font-size:1.8rem;font-weight:700;color:var(--navy);margin-bottom:1.5rem}
+.about-text p{font-size:1.05rem;color:var(--gray);line-height:1.8;margin-bottom:1.5rem}
+.about-text .highlight{background:linear-gradient(135deg,rgba(30,58,95,.08) 0%,rgba(245,158,11,.08) 100%);padding:1.8rem;border-left:4px solid var(--orange);margin-top:2rem;border-radius:4px}
+.about-text .highlight p{font-weight:600;color:var(--navy);margin:0}
+
+/* SERVICES */
+.services{background:var(--white)}
+.services-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
+.service-card{background:var(--off-white);padding:2.5rem 2rem;border-radius:8px;border:2px solid rgba(30,58,95,.1);transition:all .3s}
+.service-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(30,58,95,.1);border-color:var(--orange)}
+.service-icon{width:60px;height:60px;background:var(--orange);color:var(--white);display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:1.5rem;margin-bottom:1.5rem}
+.service-card h3{font-size:1.4rem;font-weight:700;color:var(--navy);margin-bottom:1rem}
+.service-card p{font-size:.95rem;color:var(--gray);line-height:1.7}
+
+/* PROCESS */
+.process{background:var(--navy-dark);color:var(--white);position:relative;overflow:hidden}
+.process::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80') center/cover no-repeat;opacity:.06;z-index:0}
+.process .section-header{position:relative;z-index:2}
+.process .section-title{color:var(--white)}
+.process .section-subtitle{color:rgba(255,255,255,.8)}
+.process-steps{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;position:relative;z-index:2}
+.process-step{text-align:center}
+.process-number{width:70px;height:70px;background:var(--orange);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:900;margin:0 auto 1.5rem}
+.process-step h4{font-size:1.3rem;font-weight:700;margin-bottom:1rem}
+.process-step p{font-size:.95rem;color:rgba(255,255,255,.85);line-height:1.7}
+
+/* INFO */
+.info{background:var(--off-white)}
+.info-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:4rem;align-items:start}
+.info-box{background:var(--white);padding:3rem;border-radius:8px;box-shadow:0 10px 30px rgba(30,58,95,.08)}
+.info-box h3{font-size:1.6rem;font-weight:700;color:var(--navy);margin-bottom:2rem;display:flex;align-items:center;gap:1rem}
+.info-box h3 i{color:var(--orange);font-size:1.8rem}
+.info-list{list-style:none}
+.info-list li{font-size:1rem;color:var(--gray);line-height:1.8;padding-left:2rem;position:relative;margin-bottom:1rem}
+.info-list li::before{content:'✓';position:absolute;left:0;color:var(--orange);font-weight:700;font-size:1.2rem}
+
+/* FORM */
+.form-section{background:var(--white)}
+.form-container{max-width:700px;margin:0 auto;background:var(--off-white);padding:3rem;border-radius:8px;box-shadow:0 10px 30px rgba(30,58,95,.08)}
+.contact-form{display:flex;flex-direction:column;gap:1.5rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.form-group{display:flex;flex-direction:column;gap:.5rem}
+.form-group label{font-size:.9rem;font-weight:600;color:var(--navy)}
+.form-group input,.form-group select,.form-group textarea{padding:.9rem 1rem;border:2px solid rgba(30,58,95,.15);border-radius:4px;font-size:.95rem;font-family:'Inter',sans-serif;transition:border-color .3s;background:var(--white)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--orange)}
+.form-group textarea{resize:vertical}
+.form-submit{background:var(--orange);color:var(--white);padding:1.1rem 2.5rem;border:none;border-radius:4px;font-size:1rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:.8rem;margin-top:1rem}
+.form-submit:hover{background:var(--orange-light);transform:translateY(-2px);box-shadow:0 8px 20px rgba(245,158,11,.3)}
+.form-submit i{font-size:1.2rem}
+
+/* CTA SECTION */
+.cta-section{background:var(--orange);color:var(--white);text-align:center;padding:5rem 4rem}
+.cta-section h2{font-size:clamp(2rem,4vw,3rem);font-weight:900;margin-bottom:1.5rem}
+.cta-section p{font-size:1.2rem;max-width:700px;margin:0 auto 2.5rem;opacity:.95}
+.cta-btn{display:inline-flex;align-items:center;gap:.8rem;padding:1.2rem 3rem;background:var(--white);color:var(--navy);text-decoration:none;font-size:1rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;transition:all .3s;border-radius:4px}
+.cta-btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.cta-btn i{font-size:1.2rem}
+
+/* FOOTER */
+.footer{background:var(--navy-dark);color:var(--white);padding:4rem 4rem 2rem}
+.footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:4rem;margin-bottom:3rem}
+.footer-brand h3{font-size:1.8rem;font-weight:900;margin-bottom:1rem}
+.footer-brand h3 span{color:var(--orange)}
+.footer-brand p{color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:1.5rem}
+.footer-col h4{font-size:1.1rem;font-weight:700;margin-bottom:1.5rem;color:var(--orange)}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:.8rem}
+.footer-col a{color:rgba(255,255,255,.8);text-decoration:none;transition:color .3s;font-size:.95rem}
+.footer-col a:hover{color:var(--orange)}
+.footer-social{display:flex;gap:1rem;margin-top:1.5rem}
+.footer-social a{width:40px;height:40px;background:rgba(255,255,255,.1);color:var(--white);display:flex;align-items:center;justify-content:center;border-radius:50%;text-decoration:none;transition:all .3s}
+.footer-social a:hover{background:var(--orange);transform:translateY(-3px)}
+.footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6);font-size:.9rem}
+.footer-bottom a{color:var(--orange);text-decoration:none}
+
+/* WHATSAPP BTN */
+.whatsapp-btn{position:fixed;bottom:2rem;right:2rem;width:60px;height:60px;background:#25d366;color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;box-shadow:0 4px 20px rgba(37,211,102,.4);z-index:999;text-decoration:none;transition:all .3s}
+.whatsapp-btn:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,.6)}
+
+/* RESPONSIVE */
+@media (max-width:1024px){
+  .navbar{padding:0 2rem}
+  .nav-links{gap:1.5rem}
+  .hero{padding:0 2rem}
+  .section{padding:4rem 2rem}
+  .about-content{grid-template-columns:1fr;gap:3rem}
+  .about-image{text-align:center}
+  .about-image img{max-width:500px;margin:0 auto}
+  .services-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:1fr;gap:2rem}
+  .info-grid{grid-template-columns:1fr;gap:2rem}
+  .form-row{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr;gap:2rem;text-align:center}
+  .footer-social{justify-content:center}
+}
+@media (max-width:768px){
+  .navbar{height:70px;padding:0 1.5rem;justify-content:center}
+  .navbar.scrolled{height:70px}
+  .nav-brand{margin:0 auto}
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex;position:absolute;right:1.5rem}
+  .hero{padding:0 1.5rem}
+  .hero-features{flex-direction:column;gap:1rem;align-items:center}
+  .section{padding:3rem 1.5rem}
+  .about-text{text-align:center}
+  .services-grid{max-width:500px;margin:0 auto}
+  .service-card{text-align:center}
+  .service-icon{margin:0 auto 1.5rem}
+  .process-steps{grid-template-columns:1fr;max-width:500px;margin:0 auto}
+  .info-grid{max-width:500px;margin:0 auto}
+  .form-container{padding:2rem 1.5rem}
+  .form-row{grid-template-columns:1fr}
+  .footer{padding:3rem 1.5rem 1.5rem;text-align:center}
+  .footer-grid{text-align:center}
+  .footer-social{justify-content:center}
+  .whatsapp-btn{width:55px;height:55px;font-size:1.6rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-brand">
+    <a href="#" class="nav-logo">RESET <span>CREDITICIO</span></a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#info">Información</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="https://wa.me/5493534241527" target="_blank" class="nav-cta">
+    <i class="fab fa-whatsapp"></i>
+    Consulta Gratis
+  </a>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#servicios" onclick="closeMobileNav()">Servicios</a>
+  <a href="#proceso" onclick="closeMobileNav()">Proceso</a>
+  <a href="#info" onclick="closeMobileNav()">Información</a>
+  <a href="#contacto" onclick="closeMobileNav()">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Especialistas en Desafectación Crediticia</div>
+    <h1 class="hero-title">¿Estás en el Veraz, Nosis o BCRA?<br>Recuperá tu libertad financiera</h1>
+    <p class="hero-subtitle">Te ayudamos a limpiar tu historial crediticio de forma legal, rápida y segura. Trámite 100% online en toda Argentina.</p>
+    <div class="hero-features">
+      <div class="hero-feature"><i class="fas fa-check-circle"></i> Asesoramiento Gratuito</div>
+      <div class="hero-feature"><i class="fas fa-clock"></i> Resuelto en 7 Días</div>
+      <div class="hero-feature"><i class="fas fa-shield-alt"></i> 100% Legal</div>
+    </div>
+    <a href="https://wa.me/5493534241527" target="_blank" class="hero-cta">
+      <i class="fab fa-whatsapp"></i>
+      Consulta tu caso ahora
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <div class="section-header">
+    <h2 class="section-title">Limpiá tu historial crediticio y volvé a acceder a créditos</h2>
+    <p class="section-subtitle">Nos especializamos en eliminar registros negativos del Veraz, Nosis y BCRA. Trabajamos de forma 100% online en todo el país.</p>
+  </div>
+  <div class="about-content">
+    <div class="about-image">
+      <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80" alt="Reset Crediticio">
+    </div>
+    <div class="about-text">
+      <h3>Recuperá tu acceso al sistema financiero</h3>
+      <p>Estar reportado en el Veraz, Nosis o BCRA te impide acceder a créditos, préstamos, tarjetas y hasta alquilar una vivienda. Nosotros te ayudamos a regularizar tu situación crediticia de forma profesional y legal.</p>
+      <p>Analizamos tu caso de manera personalizada y ejecutamos la estrategia más efectiva para eliminar tus registros negativos en el menor tiempo posible.</p>
+      <div class="highlight">
+        <p>El trámite es 100% online y trabajamos en todo el territorio nacional. Ofrecemos factura y asesoramiento gratuito.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section services" id="servicios">
+  <div class="section-header">
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <p class="section-subtitle">Soluciones completas para recuperar tu libertad financiera</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-search"></i></div>
+      <h3>Análisis de Veraz, Nosis y BCRA</h3>
+      <p>Revisamos tu situación actual en todas las centrales de riesgo crediticio y determinamos la mejor estrategia para tu caso específico.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-edit"></i></div>
+      <h3>Rectificación de Datos</h3>
+      <p>Corregimos información errónea o desactualizada que figura en tu historial crediticio y que afecta tu scoring.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-hourglass-end"></i></div>
+      <h3>Prescripción de Deudas</h3>
+      <p>Gestionamos la eliminación de deudas prescritas (mayores a 5 años) que no deberían aparecer en tu reporte crediticio.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fas fa-file-alt"></i></div>
+      <h3>Habeas Data</h3>
+      <p>Presentamos recursos de Habeas Data para proteger tus datos personales y eliminar información incorrecta de las bases de datos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section process" id="proceso">
+  <div class="section-header">
+    <h2 class="section-title">¿Cómo trabajamos?</h2>
+    <p class="section-subtitle">Proceso simple y transparente en 3 pasos</p>
+  </div>
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="process-number">1</div>
+      <h4>Envianos tu caso</h4>
+      <p>Contactanos por WhatsApp y compartí la información básica de tu situación. El asesoramiento inicial es gratuito.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-number">2</div>
+      <h4>Analizamos</h4>
+      <p>Revisamos tu historial en Veraz, Nosis y BCRA. Determinamos la estrategia más efectiva para tu caso específico.</p>
+    </div>
+    <div class="process-step">
+      <div class="process-number">3</div>
+      <h4>Ejecutamos</h4>
+      <p>Gestionamos todos los trámites necesarios y te acompañamos hasta que tu situación esté completamente regularizada.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INFO -->
+<section class="section info" id="info">
+  <div class="section-header">
+    <h2 class="section-title">Información que necesitamos</h2>
+    <p class="section-subtitle">Para analizar tu caso necesitamos los siguientes datos</p>
+  </div>
+  <div class="info-grid">
+    <div class="info-box">
+      <h3><i class="fas fa-clipboard-list"></i> Datos requeridos</h3>
+      <ul class="info-list">
+        <li>Antigüedad de la deuda</li>
+        <li>Si la deuda tiene más de 5 años</li>
+        <li>Si ya pagaste la deuda</li>
+        <li>Con qué entidad tenés la deuda</li>
+        <li>Tu nombre completo y número de teléfono</li>
+      </ul>
+    </div>
+    <div class="info-box">
+      <h3><i class="fas fa-globe-americas"></i> Alcance nacional</h3>
+      <ul class="info-list">
+        <li>Trámite 100% online</li>
+        <li>Trabajamos en todo el territorio argentino</li>
+        <li>Sin necesidad de reuniones presenciales</li>
+        <li>Seguimiento constante de tu caso</li>
+        <li>Factura legal por nuestros servicios</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="section form-section" id="formulario">
+  <div class="section-header">
+    <h2 class="section-title">Consultá tu caso ahora</h2>
+    <p class="section-subtitle">Completá el formulario y te contactamos por WhatsApp para analizar tu situación</p>
+  </div>
+  <div class="form-container">
+    <form id="contactForm" class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Nombre completo *</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono *</label>
+          <input type="tel" id="telefono" name="telefono" required placeholder="Ej: 1112345678">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="antiguedad">Antigüedad de la deuda *</label>
+          <select id="antiguedad" name="antiguedad" required>
+            <option value="">Seleccioná una opción</option>
+            <option value="menos-1-año">Menos de 1 año</option>
+            <option value="1-2-años">Entre 1 y 2 años</option>
+            <option value="2-5-años">Entre 2 y 5 años</option>
+            <option value="mas-5-años">Más de 5 años</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="pagada">¿Ya pagaste la deuda? *</label>
+          <select id="pagada" name="pagada" required>
+            <option value="">Seleccioná una opción</option>
+            <option value="si">Sí, ya la pagué</option>
+            <option value="no">No, aún no la pagué</option>
+            <option value="parcial">Pagué parcialmente</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="entidad">¿Con qué entidad tenés la deuda? *</label>
+        <input type="text" id="entidad" name="entidad" required placeholder="Ej: Banco Nación, Tarjeta Naranja, etc.">
+      </div>
+      <div class="form-group">
+        <label for="detalles">Detalles adicionales (opcional)</label>
+        <textarea id="detalles" name="detalles" rows="4" placeholder="Contanos más sobre tu situación..."></textarea>
+      </div>
+      <button type="submit" class="form-submit">
+        <i class="fab fa-whatsapp"></i>
+        Enviar consulta por WhatsApp
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section" id="contacto">
+  <h2>No dejes pasar más tiempo. Tu historial puede prescribir.</h2>
+  <p>Recuperá tu acceso al sistema financiero. Asesoramiento gratuito y trámite resuelto en 7 días.</p>
+  <a href="https://wa.me/5493534241527" target="_blank" class="cta-btn">
+    <i class="fab fa-whatsapp"></i>
+    Consulta tu caso gratis
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>RESET <span>CREDITICIO</span></h3>
+      <p>Especialistas en desafectación de Veraz, Nosis y BCRA. Te ayudamos a recuperar tu libertad financiera de forma legal y transparente.</p>
+      <div class="footer-social">
+        <a href="https://wa.me/5493534241527" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://instagram.com/resetcrediticio" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="/cdn-cgi/l/email-protection#2f4c40415b4e4c5b406f5d4a5c4a5b4c5d4a4b465b464c4640014c4042"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Enlaces</h4>
+      <ul>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#info">Información</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="https://wa.me/5493534241527" target="_blank">WhatsApp</a></li>
+        <li><a href="mailto:contacto@resetcrediticio.com">Email</a></li>
+        <li><a href="https://instagram.com/resetcrediticio" target="_blank">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Reset Crediticio · Desafectación Crediticia Legal<br>Desarrollado por <a href="https://instagram.com/sageedev" target="_blank">@sageedev</a></p>
+  </div>
+</footer>
+
+<a href="https://wa.me/5493534241527" target="_blank" class="whatsapp-btn"><i class="fab fa-whatsapp"></i></a>
+
+<script>
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.scrollY>50)});
+const hamburger=document.getElementById('hamburger'),mobileNav=document.getElementById('mobileNav');
+hamburger.addEventListener('click',()=>{hamburger.classList.toggle('active');mobileNav.classList.toggle('open')});
+function closeMobileNav(){hamburger.classList.remove('active');mobileNav.classList.remove('open')}
+document.querySelectorAll('.mobile-nav a').forEach(link=>{link.addEventListener('click',closeMobileNav)});
+
+// Form handling
+const form=document.getElementById('contactForm');
+form.addEventListener('submit',(e)=>{
+  e.preventDefault();
+  const nombre=document.getElementById('nombre').value;
+  const telefono=document.getElementById('telefono').value;
+  const antiguedad=document.getElementById('antiguedad').value;
+  const pagada=document.getElementById('pagada').value;
+  const entidad=document.getElementById('entidad').value;
+  const detalles=document.getElementById('detalles').value;
+  
+  let mensaje=`Hola! Mi nombre es ${nombre} y quiero consultar sobre mi situación crediticia.
+
+📋 *Datos de mi caso:*
+• Antigüedad de la deuda: ${antiguedad}
+• ¿Pagué la deuda?: ${pagada}
+• Entidad: ${entidad}
+• Teléfono: ${telefono}`;
+
+  if(detalles){
+    mensaje+=`
+
+📝 *Detalles adicionales:*
+${detalles}`;
+  }
+
+  const whatsappNumber='5493534241527';
+  const url=`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensaje)}`;
+  window.open(url,'_blank');
+});
+</script>
+</body>
+</html>
