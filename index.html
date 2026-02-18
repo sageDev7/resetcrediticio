@@ -144,6 +144,34 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);o
 .whatsapp-btn{position:fixed;bottom:2rem;right:2rem;width:60px;height:60px;background:#25d366;color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;box-shadow:0 4px 20px rgba(37,211,102,.4);z-index:999;text-decoration:none;transition:all .3s}
 .whatsapp-btn:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,.6)}
 
+/* QUIENES SOMOS */
+.quienes-somos{background:var(--white)}
+.qs-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.qs-image img{width:100%;border-radius:8px;box-shadow:0 15px 50px rgba(30,58,95,.15)}
+.qs-text h3{font-size:1.8rem;font-weight:700;color:var(--navy);margin-bottom:1.5rem}
+.qs-text p{font-size:1.05rem;color:var(--gray);line-height:1.8;margin-bottom:1.2rem}
+.qs-badge{display:inline-flex;align-items:center;gap:.8rem;background:linear-gradient(135deg,rgba(30,58,95,.08),rgba(245,158,11,.08));padding:1rem 1.5rem;border-left:4px solid var(--orange);border-radius:4px;margin-top:1rem}
+.qs-badge i{color:var(--orange);font-size:1.3rem}
+.qs-badge span{font-weight:700;color:var(--navy);font-size:.95rem}
+
+/* CASOS DE EXITO - CARRUSEL */
+.casos{background:var(--off-white);overflow:hidden}
+.carrusel-wrapper{max-width:1100px;margin:0 auto;position:relative}
+.carrusel-track-container{overflow:hidden;border-radius:8px}
+.carrusel-track{display:flex;gap:2rem;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.caso-card{background:var(--white);padding:2.5rem 2rem;border-radius:8px;box-shadow:0 8px 30px rgba(30,58,95,.08);border-top:4px solid var(--orange);flex:0 0 calc(33.333% - 1.35rem);min-width:0}
+.caso-card-label{display:inline-block;background:rgba(30,58,95,.08);color:var(--navy);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .8rem;border-radius:3px;margin-bottom:1.2rem}
+.caso-card h4{font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:.8rem;line-height:1.4}
+.caso-card p{font-size:.92rem;color:var(--gray);line-height:1.7;margin-bottom:1.4rem}
+.caso-resultado{display:inline-flex;align-items:center;gap:.5rem;background:rgba(245,158,11,.12);color:var(--orange-dark);font-size:.82rem;font-weight:700;padding:.45rem 1rem;border-radius:20px;letter-spacing:.03em}
+.caso-resultado::before{content:'';width:8px;height:8px;background:var(--orange);border-radius:50%;flex-shrink:0}
+.carrusel-dots{display:flex;justify-content:center;gap:.6rem;margin-top:2rem}
+.carrusel-dot{width:10px;height:10px;border-radius:50%;background:rgba(30,58,95,.2);border:none;cursor:pointer;padding:0;transition:all .3s}
+.carrusel-dot.active{background:var(--orange);transform:scale(1.2)}
+.carrusel-nav{display:flex;justify-content:center;gap:1rem;margin-top:1.5rem}
+.carrusel-btn{width:44px;height:44px;border-radius:50%;border:2px solid var(--orange);background:transparent;color:var(--orange);font-size:1rem;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center}
+.carrusel-btn:hover{background:var(--orange);color:var(--white)}
+
 /* RESPONSIVE */
 @media (max-width:1024px){
   .navbar{padding:0 2rem}
@@ -159,6 +187,11 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);o
   .form-row{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr;gap:2rem;text-align:center}
   .footer-social{justify-content:center}
+  .qs-grid{grid-template-columns:1fr;gap:3rem}
+  .qs-image{text-align:center}
+  .qs-image img{max-width:500px;margin:0 auto}
+  .casos-grid{grid-template-columns:1fr}
+  .caso-card{flex:0 0 calc(50% - 1rem);min-width:0}
 }
 @media (max-width:768px){
   .navbar{height:70px;padding:0 1.5rem;justify-content:center}
@@ -232,8 +265,9 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);o
     <a href="#" class="nav-logo">RESET <span>CREDITICIO</span></a>
   </div>
   <ul class="nav-links">
+    <li><a href="#quienes-somos">Quiénes Somos</a></li>
     <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#casos">Casos de Éxito</a></li>
     <li><a href="#info">Información</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
@@ -244,8 +278,9 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);o
   <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </nav>
 <div class="mobile-nav" id="mobileNav">
+  <a href="#quienes-somos" onclick="closeMobileNav()">Quiénes Somos</a>
   <a href="#servicios" onclick="closeMobileNav()">Servicios</a>
-  <a href="#proceso" onclick="closeMobileNav()">Proceso</a>
+  <a href="#casos" onclick="closeMobileNav()">Casos de Éxito</a>
   <a href="#info" onclick="closeMobileNav()">Información</a>
   <a href="#contacto" onclick="closeMobileNav()">Contacto</a>
 </div>
@@ -283,7 +318,7 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);o
       <p>Estar reportado en el Veraz, Nosis o BCRA te impide acceder a créditos, préstamos, tarjetas y hasta alquilar una vivienda. Nosotros te ayudamos a regularizar tu situación crediticia de forma profesional y legal.</p>
       <p>Analizamos tu caso de manera personalizada y ejecutamos la estrategia más efectiva para eliminar tus registros negativos en el menor tiempo posible.</p>
       <div class="highlight">
-        <p>El trámite es 100% online y trabajamos en todo el territorio nacional. Ofrecemos factura y asesoramiento gratuito.</p>
+        <p>El trámite es 100% online y trabajamos en todo el territorio nacional. Asesoramiento gratuito y personalizado.</p>
       </div>
     </div>
   </div>
@@ -355,7 +390,6 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);o
       <h3><i class="fas fa-clipboard-list"></i> Datos requeridos</h3>
       <ul class="info-list">
         <li>Antigüedad de la deuda</li>
-        <li>Si la deuda tiene más de 5 años</li>
         <li>Si ya pagaste la deuda</li>
         <li>Con qué entidad tenés la deuda</li>
         <li>Tu nombre completo y número de teléfono</li>
@@ -368,8 +402,30 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);o
         <li>Trabajamos en todo el territorio argentino</li>
         <li>Sin necesidad de reuniones presenciales</li>
         <li>Seguimiento constante de tu caso</li>
-        <li>Factura legal por nuestros servicios</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<!-- QUIENES SOMOS -->
+<section class="section quienes-somos" id="quienes-somos">
+  <div class="section-header">
+    <h2 class="section-title">¿Quiénes somos?</h2>
+    <p class="section-subtitle">Un estudio jurídico especializado en tu libertad financiera</p>
+  </div>
+  <div class="qs-grid">
+    <div class="qs-image">
+      <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80" alt="Estudio Jurídico Reset Crediticio">
+    </div>
+    <div class="qs-text">
+      <h3>Somos un estudio jurídico con experiencia real en casos de Veraz</h3>
+      <p>Reset Crediticio es un estudio jurídico radicado en Córdoba Capital, dedicado exclusivamente a la desafectación crediticia. Contamos con años de experiencia gestionando casos reales de personas que figuraban en Veraz, Nosis y BCRA y lograron recuperar su historial.</p>
+      <p>Nuestro equipo combina conocimiento jurídico profundo con un proceso ágil y transparente. Sabemos lo que significa estar bloqueado financieramente y trabajamos con compromiso para que cada cliente recupere su libertad lo antes posible.</p>
+      <p>No somos intermediarios ni gestores: somos abogados que conocemos cada vericueto legal para defender tus derechos crediticios.</p>
+      <div class="qs-badge">
+        <i class="fas fa-balance-scale"></i>
+        <span>Estudio Jurídico · Córdoba Capital · 100% Legal</span>
+      </div>
     </div>
   </div>
 </section>
@@ -429,6 +485,61 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);o
   </div>
 </section>
 
+<!-- CASOS DE EXITO -->
+<section class="section casos" id="casos">
+  <div class="section-header">
+    <h2 class="section-title">Casos de Éxito</h2>
+    <p class="section-subtitle">Personas reales que recuperaron su historial crediticio con nosotros</p>
+  </div>
+  <div class="carrusel-wrapper">
+    <div class="carrusel-track-container">
+      <div class="carrusel-track" id="carruselTrack">
+
+        <div class="caso-card">
+          <span class="caso-card-label">Prescripción · Córdoba</span>
+          <h4>Deuda prescripta con entidad bancaria</h4>
+          <p>Cliente con deuda de más de 5 años en un banco provincial que le impedía acceder a un crédito hipotecario. Gestionamos la prescripción y eliminación del registro en Veraz y BCRA.</p>
+          <span class="caso-resultado">Resuelto en 6 días</span>
+        </div>
+
+        <div class="caso-card">
+          <span class="caso-card-label">Habeas Data · Buenos Aires</span>
+          <h4>Dato erróneo en Nosis por deuda cancelada</h4>
+          <p>Información incorrecta de una deuda ya pagada que seguía figurando en Nosis e impedía financiar un vehículo. Presentamos Habeas Data y logramos la rectificación completa.</p>
+          <span class="caso-resultado">Rectificado en 7 días</span>
+        </div>
+
+        <div class="caso-card">
+          <span class="caso-card-label">Múltiples registros · Rosario</span>
+          <h4>Historial completo con varias deudas en Veraz</h4>
+          <p>Empresario con múltiples registros negativos en Veraz por deudas con tarjetas. Analizamos cada deuda, aplicamos la estrategia correcta y limpiamos su historial en su totalidad.</p>
+          <span class="caso-resultado">Historial limpio en 10 días</span>
+        </div>
+
+        <div class="caso-card">
+          <span class="caso-card-label">BCRA · Mendoza</span>
+          <h4>Situación 5 en BCRA por crédito personal</h4>
+          <p>Cliente clasificado en situación 5 en el BCRA por un crédito personal impago desde hacía años. Logramos la actualización del registro y la mejora de su scoring crediticio.</p>
+          <span class="caso-resultado">Clasificación normalizada en 8 días</span>
+        </div>
+
+        <div class="caso-card">
+          <span class="caso-card-label">Rectificación · Córdoba</span>
+          <h4>Deuda de otra persona cargada por error</h4>
+          <p>Cliente que figuraba en Veraz por una deuda que no le pertenecía: error de identidad en el sistema de una financiera. Iniciamos la rectificación y obtuvimos la eliminación total del registro.</p>
+          <span class="caso-resultado">Error eliminado en 5 días</span>
+        </div>
+
+      </div>
+    </div>
+    <div class="carrusel-dots" id="carruselDots"></div>
+    <div class="carrusel-nav">
+      <button class="carrusel-btn" id="btnPrev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+      <button class="carrusel-btn" id="btnNext" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
 <!-- CTA SECTION -->
 <section class="cta-section" id="contacto">
   <h2>No dejes pasar más tiempo. <br>Tu historial puede prescribir.</h2>
@@ -446,16 +557,17 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);o
       <h3>RESET <span>CREDITICIO</span></h3>
       <p>Especialistas en desafectación de Veraz, Nosis y BCRA. Te ayudamos a recuperar tu libertad financiera de forma legal y transparente.</p>
       <div class="footer-social">
-        <a href="https://wa.me/5493534241527" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://wa.me/5493534456989" target="_blank"><i class="fab fa-whatsapp"></i></a>
         <a href="https://instagram.com/resetcrediticio" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="/cdn-cgi/l/email-protection#2f4c40415b4e4c5b406f5d4a5c4a5b4c5d4a4b465b464c4640014c4042"><i class="fas fa-envelope"></i></a>
+        <a href="mailto:resetcrediticio@gmail.com"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
     <div class="footer-col">
       <h4>Enlaces</h4>
       <ul>
+        <li><a href="#quienes-somos">Quiénes Somos</a></li>
         <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#casos">Casos de Éxito</a></li>
         <li><a href="#info">Información</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
@@ -463,9 +575,10 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);o
     <div class="footer-col">
       <h4>Contacto</h4>
       <ul>
-        <li><a href="https://wa.me/5493534241527" target="_blank">WhatsApp</a></li>
-        <li><a href="mailto:contacto@resetcrediticio.com">Email</a></li>
+        <li><a href="https://wa.me/5493534456989" target="_blank">WhatsApp</a></li>
+        <li><a href="mailto:resetcrediticio@gmail.com">Email</a></li>
         <li><a href="https://instagram.com/resetcrediticio" target="_blank">Instagram</a></li>
+        <li style="color:rgba(255,255,255,.7);margin-top:1rem;list-style:none"><i class="fas fa-map-marker-alt" style="color:var(--orange);margin-right:.5rem"></i>Balcarce 354, Oficina 2<br><span style="padding-left:1.3rem">Córdoba Capital</span></li>
       </ul>
     </div>
   </div>
@@ -474,7 +587,7 @@ body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);o
   </div>
 </footer>
 
-<a href="https://wa.me/5493534241527" target="_blank" class="whatsapp-btn"><i class="fab fa-whatsapp"></i></a>
+<a href="https://wa.me/5493534456989" target="_blank" class="whatsapp-btn"><i class="fab fa-whatsapp"></i></a>
 
 <script>
 const navbar=document.getElementById('navbar');
@@ -510,10 +623,95 @@ form.addEventListener('submit',(e)=>{
 ${detalles}`;
   }
 
-  const whatsappNumber='5493534241527';
+  const whatsappNumber='5493534456989';
   const url=`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensaje)}`;
   window.open(url,'_blank');
 });
+
+// CARRUSEL CASOS DE EXITO
+(function(){
+  const track = document.getElementById('carruselTrack');
+  const dotsContainer = document.getElementById('carruselDots');
+  const btnPrev = document.getElementById('btnPrev');
+  const btnNext = document.getElementById('btnNext');
+  const cards = track.querySelectorAll('.caso-card');
+  const total = cards.length;
+  let current = 0;
+  let autoTimer;
+  let visibles = 3;
+
+  function getVisibles(){
+    if(window.innerWidth < 768) return 1;
+    if(window.innerWidth < 1024) return 2;
+    return 3;
+  }
+
+  function maxIndex(){
+    return total - getVisibles();
+  }
+
+  function getCardWidth(){
+    const gap = 32;
+    const containerW = track.parentElement.offsetWidth;
+    const v = getVisibles();
+    return (containerW - gap*(v-1)) / v;
+  }
+
+  function buildDots(){
+    dotsContainer.innerHTML = '';
+    const max = maxIndex();
+    for(let i=0;i<=max;i++){
+      const d = document.createElement('button');
+      d.className = 'carrusel-dot' + (i===current?' active':'');
+      d.addEventListener('click',()=>goTo(i));
+      dotsContainer.appendChild(d);
+    }
+  }
+
+  function updateDots(){
+    dotsContainer.querySelectorAll('.carrusel-dot').forEach((d,i)=>{
+      d.classList.toggle('active', i===current);
+    });
+  }
+
+  function goTo(idx){
+    const max = maxIndex();
+    current = Math.max(0, Math.min(idx, max));
+    const w = getCardWidth();
+    const gap = 32;
+    track.style.transform = `translateX(-${current*(w+gap)}px)`;
+    // set card widths
+    cards.forEach(c=>{ c.style.flex=`0 0 ${w}px`; c.style.minWidth=`${w}px`; });
+    updateDots();
+  }
+
+  function next(){
+    goTo(current >= maxIndex() ? 0 : current+1);
+  }
+
+  function startAuto(){
+    clearInterval(autoTimer);
+    autoTimer = setInterval(next, 3500);
+  }
+
+  function init(){
+    visibles = getVisibles();
+    buildDots();
+    goTo(current);
+    startAuto();
+  }
+
+  btnNext.addEventListener('click',()=>{ goTo(current >= maxIndex() ? 0 : current+1); startAuto(); });
+  btnPrev.addEventListener('click',()=>{ goTo(current <= 0 ? maxIndex() : current-1); startAuto(); });
+
+  // pause on hover
+  track.addEventListener('mouseenter',()=>clearInterval(autoTimer));
+  track.addEventListener('mouseleave',()=>startAuto());
+
+  window.addEventListener('resize',()=>{ buildDots(); goTo(Math.min(current, maxIndex())); });
+
+  init();
+})();
 </script>
 </body>
 </html>
